@@ -1,18 +1,20 @@
 <script setup>
 /**
- * 问题描述：
- * 验证 iOS App 下在切换页面的时候，会重叠在一起。
- * 观察现象：切换后动画没生效，一直停滞，导致 transform 没有应用上。
+ * 问题描述：编译到 iOS App 端，各 swiper-item 重叠在一起。
  */
-const list = [
-  // 诗经 蒹葭
-  '蒹葭苍苍，白露为霜。所谓伊人，在水一方。溯洄从之，道阻且长。溯游从之，宛在水中央。',
-  // 诗经 关雎
-  '关关雎鸠，在河之洲。窈窕淑女，君子好逑。',
-  // 诗经 桃夭
-  '桃之夭夭，灼灼其华。之子于归，宜其室家。',
-  // 诗经 汉广
-]
+
+import { onMounted, ref } from 'vue'
+import { FAKE_LIST } from '../../constants'
+
+const list = ref([])
+
+onMounted(async () => {
+  list.value = await fetchList()
+})
+
+function fetchList() {
+  return new Promise(resolve => setTimeout(() => resolve(FAKE_LIST), 1000))
+}
 
 function onChange(e) {
   console.log('🚀 ~ onChange ~ e:', e.detail.source, e.detail.current)
@@ -20,34 +22,35 @@ function onChange(e) {
 </script>
 
 <template>
-  <view class="box">
-    <swiper
-      autoplay
-      circular
-      class="swiper-box"
-      :duration="200"
-      :interval="3000"
-      vertical
-      @change="onChange"
-    >
-      <swiper-item v-for="text in list" :key="text" class="swiper-item" @click="navToCustomService">
-        {{ text }}
-      </swiper-item>
-    </swiper>
-  </view>
+  <view class="subtitle">组件一</view>
+
+  <swiper
+    autoplay
+    circular
+    class="swiper"
+    :duration="200"
+    :interval="2000"
+    vertical
+    @change="onChange"
+  >
+    <swiper-item v-for="text in list" :key="text" class="swiper-item">
+      {{ text }}
+    </swiper-item>
+  </swiper>
 </template>
 
 <style scoped>
-.box {
-  height: 36rpx;
-  font-size: 22rpx;
-  font-weight: 400;
-  line-height: 36rpx;
+.subtitle {
+  font-size: 24px;
+  font-weight: bold;
 }
 
-.swiper-box {
+.swiper {
+  margin-bottom: 30rpx;
+  background: #eee;
+  border-radius: 10rpx;
   width: 100%;
-  height: 100%;
+  height: 72rpx;
 }
 
 .swiper-item {
@@ -56,5 +59,7 @@ function onChange(e) {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+  display: flex;
+  align-items: center;
 }
 </style>

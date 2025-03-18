@@ -3,30 +3,28 @@ import { ref } from 'vue'
 import SubOne from './sub-one.vue'
 import SubTwo from './sub-two.vue'
 
-const mode = ref(0)
+const index = ref(0)
 
-const onModeChange = nextMode => {
-  mode.value = nextMode
+const onToggle = () => {
+  index.value = index.value === 0 ? 1 : 0
 }
 </script>
 
 <template>
-  <button class="btn" @click="onModeChange(Number(!mode))">切换模式</button>
-  <SubOne v-if="mode === 0" />
+  <button class="btn" @click="onToggle">切换组件</button>
+
+  <SubOne v-if="index === 0" />
   <SubTwo v-else />
 </template>
 
 <style scoped>
 :global(page) {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
   min-height: 100vh;
-  width: 100vw;
+  padding: 30rpx;
+  box-sizing: border-box;
 }
 
 .btn {
-  margin: 30rpx;
+  margin-bottom: 30rpx;
 }
 </style>

@@ -12,6 +12,9 @@ $ pnpm dev:mp-weixin
 
 # h5
 $ pnpm dev:h5
+
+# app
+$ pnpm dev:app
 ```
 
 > 编译到微信小程序的花，导入至微信开发工具，使用测试号打开即可。
