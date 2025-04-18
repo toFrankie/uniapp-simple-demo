@@ -12,6 +12,12 @@
       "style": {
         "navigationBarTitleText": "swiper-demo"
       }
+    },
+    {
+      "path": "pages/canvas/index",
+      "style": {
+        "navigationBarTitleText": "canvas-demo"
+      }
     }
   ],
   "globalStyle": {
