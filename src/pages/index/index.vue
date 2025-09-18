@@ -76,7 +76,9 @@ export default {
 
 <template>
   <canvas id="canvas" canvas-id="canvas" class="canvas" type="2d"></canvas>
+  <!-- #ifdef APP-PLUS -->
   <view :change:prop="renderjs.onFillColorChange" :prop="fillColor" style="display: none"></view>
+  <!-- #endif -->
   <button @click="updateFillColor">更换颜色</button>
 </template>
 
