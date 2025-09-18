@@ -21,7 +21,7 @@ export default {
 </script>
 
 <script lang="renderjs" module="renderjs">
-// import { formatAppLog } from '@dcloudio/uni-app'
+import { formatAppLog } from '@dcloudio/uni-app'
 
 /**
  * 复现步骤：
@@ -44,7 +44,7 @@ export default {
   },
 
   mounted() {
-    // formatAppLog('warn', 'index.vue', '测试测试')
+    formatAppLog('warn', 'index.vue', '测试测试')
     this.initAppCanvas()
   },
 
