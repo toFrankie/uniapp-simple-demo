@@ -17,6 +17,6 @@ $ pnpm dev:h5
 $ pnpm dev:app-plus
 ```
 
-> 编译到微信小程序的话，导入至微信开发工具，使用测试号打开即可。
+> 编译到微信小程序的话，导入至微信开发工具，使用测试号打开。
 
-> 编译到 App 端的话，使用 HBuildX 导入 `dist/dev/app`，接着编译到 iOS 模拟器。
+> 编译到 App 端的话，使用 HBuilderX 导入 `dist/dev/app`，接着 iOS 模拟器打开。
