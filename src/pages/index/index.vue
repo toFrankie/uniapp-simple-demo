@@ -1,54 +1,67 @@
 <script setup>
-import { ROUTE } from '@/constants'
+import { ref } from 'vue'
+import SubOne from './sub-one.vue'
+import SubTwo from './sub-two.vue'
 
-import ColorfulIcon from './colorful-icon.vue'
+const index = ref(0)
 
-function navToSwiperDemo() {
-  uni.navigateTo({ url: ROUTE.SWIPER_DEMO })
+const onToggle = () => {
+  index.value = index.value === 0 ? 1 : 0
 }
+
+const imageList = [
+  'https://placehold.co/690x200?text=1',
+  'https://placehold.co/690x200?text=2',
+  'https://placehold.co/690x200?text=3',
+  'https://placehold.co/690x200?text=4',
+  'https://placehold.co/690x200?text=5',
+]
 </script>
 
 <template>
-  <button class="btn" @click="navToSwiperDemo">前往 Swiper Demo</button>
+  <swiper
+    autoplay
+    circular
+    class="swiper"
+    :duration="500"
+    :interval="2000"
+    vertical
+    @change="onChange"
+  >
+    <swiper-item v-for="image in imageList" :key="image" class="swiper-item">
+      <image class="image" :src="image" />
+    </swiper-item>
+  </swiper>
 
-  <view class="parent-box">
-    <ColorfulIcon
-      v-bind="$attrs"
-      class="icon"
-      color="#f00"
-      src="https://cloud-minapp-44328.cloud.ifanrusercontent.com/icon-pro-mode-super.svg"
-    />
-  </view>
+  <button class="btn" @click="onToggle">切换组件</button>
+
+  <SubOne v-if="index === 0" />
+  <SubTwo v-else />
 </template>
 
 <style scoped>
 :global(page) {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  min-height: 100vh;
+  padding: 30rpx;
+  box-sizing: border-box;
 }
 
 .btn {
   margin: 30rpx auto;
 }
 
-.box {
-  width: 600rpx;
-  height: 600rpx;
-  background-color: red;
-  margin: 100rpx auto 0;
-  color: #fff;
+.swiper {
+  width: 690rpx;
+  height: 200rpx;
 }
 
-.parent-box {
-  background-color: #eee;
+.swiper-item {
+  width: 100%;
+  height: 100%;
 }
 
-.icon {
-  width: 56rpx;
-  height: 56rpx;
-  margin-right: 4rpx;
-  display: block;
+.image {
+  width: 100%;
+  height: 100%;
 }
 </style>
