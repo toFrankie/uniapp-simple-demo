@@ -1,7 +1,10 @@
-<script setup></script>
+<script setup>
+import Movable from './movable.vue'
+</script>
 
 <template>
-  <view class="subtitle">组件二</view>
+  <view class="subtitle">子组件二</view>
+  <Movable />
 </template>
 
 <style scoped>
@@ -9,4 +12,5 @@
   font-size: 24px;
   font-weight: bold;
 }
+
 </style>
